@@ -1,0 +1,10 @@
+daml 1.2
+module HackAdemy.Roles.ParticipantRole where
+
+template Participant
+  with
+    participant : Party
+    operator : Party
+  where
+    signatory participant
+    

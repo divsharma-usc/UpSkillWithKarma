@@ -1,0 +1,15 @@
+daml 1.2
+
+module HackAdemy.Wallet.Lang where
+
+data WalletId = WalletId
+  with
+    provider : Party
+    owner : Party
+    walletType : WalletType
+  deriving (Eq, Show)
+
+data WalletType
+  = Dead
+  | Live
+  deriving (Eq, Show)

@@ -1,0 +1,15 @@
+-- Copyright (c) 2020 Digital Asset (Switzerland) GmbH and/or its affiliates. All rights reserved.
+-- SPDX-License-Identifier: Apache-2.0
+daml 1.2
+module Setup where
+
+import Daml.Script
+import HackAdemy.Roles.OperatorRole
+
+initialize : Script ()
+initialize = do
+  operator <- allocatePartyWithHint "Operator" (PartyIdHint "Operator")
+  aliceTV <- submit operator do
+    createCmd OperatorRole with
+      operator = operator
+  pure ()

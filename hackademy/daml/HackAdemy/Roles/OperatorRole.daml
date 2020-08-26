@@ -1,0 +1,46 @@
+daml 1.2
+module HackAdemy.Roles.OperatorRole where
+
+import DA.Time
+
+import HackAdemy.Wallet.Karma
+import HackAdemy.Wallet.Lang
+
+template OperatorRole
+  with
+    operator : Party
+  where
+    signatory operator
+  
+    controller operator can
+        nonconsuming Create_wallet : (ContractId KarmaWallet, ContractId KarmaWallet)
+          with
+            owner : Party
+            psid : Decimal
+            amount : Decimal
+          do 
+            now <- getTime
+            lC <- create KarmaWallet with 
+              provider = operator
+              walletType = Dead
+              id = WalletId with 
+                provider = operator
+                owner 
+                walletType = Dead
+              creationTime = now
+              modificationTime = now
+              ..
+            dC <- create KarmaWallet with
+              provider = operator
+              walletType = Live
+              amount = 0.0
+              id = WalletId with 
+                provider = operator
+                owner 
+                walletType = Live
+              creationTime = now
+              modificationTime = now
+              ..
+            pure (lC , dC)
+            
+    
