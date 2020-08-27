@@ -4,6 +4,10 @@ module HackAdemy.Wallet.Karma where
 import DA.Time()
 import DA.Action() 
 import HackAdemy.Wallet.Lang
+import HackAdemy.Course.Course
+import HackAdemy.Course.Lang
+import HackAdemy.KC.KC
+import HackAdemy.KC.Lang
 
 template KarmaWallet
   with
@@ -38,15 +42,49 @@ template KarmaWallet
               else do
                 return self
 
+        nonconsuming Add_Amount : ContractId KarmaWallet
+          with
+            addAmount : Decimal
+          do
+            now <- getTime
+            if walletType == Dead
+              then do
+                kW <- fetch self
+                archive self
+                create kW with
+                  amount = amount + addAmount
+                  modificationTime = now
+              else do
+                return self
+
     controller owner can
-      Spend : ContractId KarmaWallet
+      Spend : (ContractId KarmaWallet, ContractId KC)
         with 
-          spendAmount : Decimal
+          cId : Text
         do
           now <- getTime
-          let newAmount = amount - spendAmount
-          assertMsg "Invalid Coins" (newAmount > 0.0)
+
           assertMsg "Can only spend from dead coinds" (walletType == Dead)
-          create this with
+
+          (_, course) <- fetchByKey @Course (CourseId with cId , operator = provider)
+          let newAmount = amount - course.amount
+          assertMsg "Invalid Coins" (newAmount > 0.0)
+
+          kCCid <- create KC with
+            status = UnSettled
+            taker = owner
+            provider = course.creator
+            id = KCId with cId, psid, operator = provider
+            creationTime = now
+            modificationTime = now
+            operator = provider
+            amount = course.amount
+            penality = course.penality
+            isDone = False
+            ..
+
+          kCid <- create this with
             amount = newAmount
             modificationTime = now
+
+          pure (kCid, kCCid)

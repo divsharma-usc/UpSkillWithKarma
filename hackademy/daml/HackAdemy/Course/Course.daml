@@ -3,6 +3,7 @@ daml 1.2
 module HackAdemy.Course.Course where
 
 import DA.Time()
+import DA.List()
 import HackAdemy.Course.Lang
 
 template Course
@@ -14,30 +15,39 @@ template Course
         -----------------
         minimumTimeSpend : Decimal
         minimumPassingScore : Decimal
-        cost : Decimal
+        amount : Decimal
         penality : Decimal
         ------------------
         courseId : CourseId
         creationTime : Time
         modificationTime : Time
+        observers : [Party]
     where
         signatory creator, operator
+        observer observers
 
-        ensure courseId == CourseId with cId, operator && penality <= cost
+        ensure courseId == CourseId with cId, operator && penality <= amount
         key courseId : CourseId
         maintainer key.operator
+
+        controller operator can
+            Add_Observer : ContractId Course
+                with
+                    newObserver : Party
+                do
+                    create this with observers = newObserver :: observers
 
         controller creator can
             Edit_Course : ContractId Course
                 with
                     newMinimumTimeSpend : Decimal
                     newMinimumPassingScore : Decimal
-                    newCost : Decimal
+                    newAmount : Decimal
                     newPenality : Decimal
                 do
                     now <- getTime
                     create this with
-                        cost = newCost
+                        amount = newAmount
                         penality = newPenality
                         minimumTimeSpend = newMinimumTimeSpend
                         minimumPassingScore = newMinimumPassingScore

@@ -1,0 +1,10 @@
+
+daml 1.2
+module HackAdemy.Karma.Lang where
+
+data KarmaId = KarmaId
+  with
+    cId : Text
+    psid : Text
+    operator : Party
+  deriving (Eq, Show)

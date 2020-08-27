@@ -1,0 +1,16 @@
+daml 1.2
+
+module HackAdemy.KC.Lang where
+
+data KCId = KCId
+  with
+    cId : Text
+    psid : Text
+    operator : Party
+  deriving (Eq, Show)
+
+data Status
+  = Settled
+  | UnSettled
+  | Cancel
+  deriving (Eq, Show)

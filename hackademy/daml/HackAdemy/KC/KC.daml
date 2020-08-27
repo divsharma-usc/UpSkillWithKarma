@@ -1,0 +1,67 @@
+daml 1.2
+
+module HackAdemy.KC.KC where
+
+import HackAdemy.KC.Lang
+import HackAdemy.Karma.Karma
+import HackAdemy.Karma.Lang
+
+template KC
+    with
+        status : Status
+        cId : Text
+        psid : Text
+        operator : Party
+        taker : Party
+        provider : Party
+        id : KCId
+        amount : Decimal
+        penality : Decimal
+        isDone : Bool
+        -------------------------
+        creationTime : Time
+        modificationTime : Time
+    where
+        signatory taker, operator
+        
+        ensure id == KCId with  cId, psid, operator
+        key id : KCId
+        maintainer key.operator
+
+        controller operator can
+            Settle : (ContractId KC, ContractId Karma)
+                do
+                    now <- getTime
+                    assertMsg "DvP must be in UnSettled State" (status == UnSettled)
+                    assertMsg "Course Provider approval" (isDone)
+
+                    kCCid <- create this with 
+                        status = Settled
+                        modificationTime = now
+
+                    kid <- create Karma with
+                        owner = taker
+                        point = amount
+                        id =  KarmaId with cId, psid, operator
+                        creationTime = now
+                        ..
+
+                    pure( kCCid, kid)
+
+        controller taker can
+            Cancel_KC : ContractId KC
+                do
+                    now <- getTime
+                    assertMsg "DvP must be in UnSettled State" (status == UnSettled)
+                    create this with 
+                        status = Cancel
+                        modificationTime = now
+        
+        controller provider can
+            Approve_KC : ContractId KC
+                do
+                    now <- getTime
+                    assertMsg "DvP must be in UnSettled State" (status == UnSettled)
+                    create this with 
+                        isDone = True
+                        modificationTime = now

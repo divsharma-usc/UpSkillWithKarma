@@ -1,0 +1,22 @@
+daml 1.2
+module HackAdemy.Karma.Karma where
+
+import DA.Time()
+import HackAdemy.Karma.Lang
+
+template Karma
+    with
+        owner : Party
+        operator : Party
+        psid : Text
+        point : Decimal
+        cId : Text
+        creationTime : Time
+        id : KarmaId
+    where
+        signatory operator
+        observer  owner
+
+        ensure id == KarmaId with  cId, psid, operator && owner /= operator
+        key id : KarmaId
+        maintainer key.operator

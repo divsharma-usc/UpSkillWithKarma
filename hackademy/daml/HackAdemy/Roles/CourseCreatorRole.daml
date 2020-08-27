@@ -44,7 +44,7 @@ template CourseCreatorRole
             cId : Text
             minimumTimeSpend : Decimal
             minimumPassingScore : Decimal
-            cost : Decimal
+            amount : Decimal
             penality : Decimal
           do
             now <- getTime
@@ -52,4 +52,5 @@ template CourseCreatorRole
               courseId = CourseId with cId = cId, operator
               creationTime = now
               modificationTime = now
+              observers = [operator, creator]
               ..
