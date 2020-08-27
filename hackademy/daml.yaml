@@ -4,7 +4,10 @@ source: daml
 init-script: Setup:initialize
 parties:
   - Operator
-  - Emp
+  - Emp1
+  - Emp2
+  - CourseCreator1
+  - CourseCreator2
 version: 0.0.1
 dependencies:
   - daml-prim

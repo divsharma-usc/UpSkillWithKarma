@@ -5,11 +5,22 @@ module Setup where
 
 import Daml.Script
 import HackAdemy.Roles.OperatorRole
+import HackAdemy.Roles.CourseCreatorRole
 
 initialize : Script ()
 initialize = do
   operator <- allocatePartyWithHint "Operator" (PartyIdHint "Operator")
-  aliceTV <- submit operator do
+  courseCreator1 <- allocatePartyWithHint "CourseCreator1" (PartyIdHint "CourseCreator1")
+  courseCreator2 <- allocatePartyWithHint "CourseCreator2" (PartyIdHint "CourseCreator2")
+  
+  operatorCid <- submit operator do
     createCmd OperatorRole with
       operator = operator
+
+  ccInvitationCid1 <- submit operator $ exerciseCmd operatorCid $ Invite_CourseCreator courseCreator1
+  submit courseCreator1 $ exerciseCmd ccInvitationCid1 Accept_Invitation
+
+  ccInvitationCid2 <- submit operator $ exerciseCmd operatorCid $ Invite_CourseCreator courseCreator2
+  submit courseCreator2 $ exerciseCmd ccInvitationCid2 Accept_Invitation
+
   pure ()

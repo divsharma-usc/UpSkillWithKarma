@@ -1,10 +1,11 @@
 daml 1.2
 module HackAdemy.Roles.OperatorRole where
 
-import DA.Time
+import DA.Time()
 
 import HackAdemy.Wallet.Karma
 import HackAdemy.Wallet.Lang
+import HackAdemy.Roles.CourseCreatorRole
 
 template OperatorRole
   with
@@ -42,5 +43,9 @@ template OperatorRole
               modificationTime = now
               ..
             pure (lC , dC)
-            
-    
+        
+        nonconsuming Invite_CourseCreator : ContractId CourseCreatorRoleInvitation
+          with
+            creator : Party
+          do
+            create CourseCreatorRoleInvitation with ..  

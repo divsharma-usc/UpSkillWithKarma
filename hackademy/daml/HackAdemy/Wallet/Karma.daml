@@ -1,8 +1,8 @@
 daml 1.2
 module HackAdemy.Wallet.Karma where
 
-import DA.Time
-import DA.Action 
+import DA.Time()
+import DA.Action() 
 import HackAdemy.Wallet.Lang
 
 template KarmaWallet
@@ -52,4 +52,3 @@ template KarmaWallet
           create this with
             amount = newAmount
             modificationTime = now
-    

@@ -1,0 +1,25 @@
+daml 1.2
+module HackAdemy.Roles.CourseCreatorRole where
+
+template CourseCreatorRoleInvitation
+  with
+    creator : Party
+    operator : Party
+  where
+    signatory operator
+
+    controller creator can
+        Accept_Invitation : ContractId CourseCreatorRole
+          do
+            create CourseCreatorRole with ..
+
+        Decline_Invitation : ()
+          do
+            pure ()
+
+template CourseCreatorRole
+  with 
+    creator : Party
+    operator : Party
+  where
+    signatory creator, operator
