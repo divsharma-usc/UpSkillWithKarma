@@ -9,9 +9,9 @@ import HackAdemy.Roles.CourseCreatorRole
 
 initialize : Script ()
 initialize = do
-  operator <- allocatePartyWithHint "Operator" (PartyIdHint "Operator")
-  courseCreator1 <- allocatePartyWithHint "CourseCreator1" (PartyIdHint "CourseCreator1")
-  courseCreator2 <- allocatePartyWithHint "CourseCreator2" (PartyIdHint "CourseCreator2")
+  operator <- allocateParty "Operator"
+  courseCreator1 <- allocateParty "CourseCreator1"
+  courseCreator2 <- allocateParty "CourseCreator2"
   
   operatorCid <- submit operator do
     createCmd OperatorRole with
