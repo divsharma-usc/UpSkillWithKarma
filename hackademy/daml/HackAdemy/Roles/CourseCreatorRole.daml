@@ -1,13 +1,22 @@
 daml 1.2
 module HackAdemy.Roles.CourseCreatorRole where
 
+import HackAdemy.Roles.Lang
+import HackAdemy.Course.Course
+import HackAdemy.Course.Lang
+
 template CourseCreatorRoleInvitation
   with
     creator : Party
     operator : Party
+    id : RoleId
   where
     signatory operator
 
+    ensure id == RoleId with operator, party = creator
+    key id : RoleId
+    maintainer key.operator
+    
     controller creator can
         Accept_Invitation : ContractId CourseCreatorRole
           do
@@ -21,5 +30,26 @@ template CourseCreatorRole
   with 
     creator : Party
     operator : Party
+    id : RoleId
   where
     signatory creator, operator
+
+    ensure id == RoleId with operator, party = creator
+    key id : RoleId
+    maintainer key.operator
+
+    controller creator can
+        nonconsuming Create_Course : ContractId Course
+          with
+            cId : Text
+            minimumTimeSpend : Decimal
+            minimumPassingScore : Decimal
+            cost : Decimal
+            penality : Decimal
+          do
+            now <- getTime
+            create Course with 
+              courseId = CourseId with cId = cId, operator
+              creationTime = now
+              modificationTime = now
+              ..

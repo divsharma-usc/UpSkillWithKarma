@@ -1,0 +1,44 @@
+daml 1.2
+
+module HackAdemy.Course.Course where
+
+import DA.Time()
+import HackAdemy.Course.Lang
+
+template Course
+    with
+        creator : Party
+        operator : Party
+        -----------------
+        cId : Text
+        -----------------
+        minimumTimeSpend : Decimal
+        minimumPassingScore : Decimal
+        cost : Decimal
+        penality : Decimal
+        ------------------
+        courseId : CourseId
+        creationTime : Time
+        modificationTime : Time
+    where
+        signatory creator, operator
+
+        ensure courseId == CourseId with cId, operator && penality <= cost
+        key courseId : CourseId
+        maintainer key.operator
+
+        controller creator can
+            Edit_Course : ContractId Course
+                with
+                    newMinimumTimeSpend : Decimal
+                    newMinimumPassingScore : Decimal
+                    newCost : Decimal
+                    newPenality : Decimal
+                do
+                    now <- getTime
+                    create this with
+                        cost = newCost
+                        penality = newPenality
+                        minimumTimeSpend = newMinimumTimeSpend
+                        minimumPassingScore = newMinimumPassingScore
+                        modificationTime = now

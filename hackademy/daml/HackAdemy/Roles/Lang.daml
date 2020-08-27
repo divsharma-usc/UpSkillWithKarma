@@ -1,0 +1,9 @@
+daml 1.2
+
+module HackAdemy.Roles.Lang where
+
+data RoleId = RoleId
+  with
+    party : Party
+    operator : Party
+  deriving (Eq, Show)

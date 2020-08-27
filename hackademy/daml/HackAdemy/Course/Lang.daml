@@ -1,0 +1,9 @@
+daml 1.2
+
+module HackAdemy.Course.Lang where
+
+data CourseId = CourseId
+  with
+    cId : Text
+    operator : Party
+  deriving (Eq, Show)

@@ -5,7 +5,7 @@ module HackAdemy.Wallet.Lang where
 data WalletId = WalletId
   with
     provider : Party
-    owner : Party
+    psid : Text
     walletType : WalletType
   deriving (Eq, Show)
 

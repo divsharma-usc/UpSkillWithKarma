@@ -6,6 +6,7 @@ import DA.Time()
 import HackAdemy.Wallet.Karma
 import HackAdemy.Wallet.Lang
 import HackAdemy.Roles.CourseCreatorRole
+import HackAdemy.Roles.Lang
 
 template OperatorRole
   with
@@ -17,7 +18,7 @@ template OperatorRole
         nonconsuming Create_wallet : (ContractId KarmaWallet, ContractId KarmaWallet)
           with
             owner : Party
-            psid : Decimal
+            psid : Text
             amount : Decimal
           do 
             now <- getTime
@@ -26,7 +27,7 @@ template OperatorRole
               walletType = Dead
               id = WalletId with 
                 provider = operator
-                owner 
+                psid
                 walletType = Dead
               creationTime = now
               modificationTime = now
@@ -37,7 +38,7 @@ template OperatorRole
               amount = 0.0
               id = WalletId with 
                 provider = operator
-                owner 
+                psid
                 walletType = Live
               creationTime = now
               modificationTime = now
@@ -48,4 +49,9 @@ template OperatorRole
           with
             creator : Party
           do
-            create CourseCreatorRoleInvitation with ..  
+            create CourseCreatorRoleInvitation 
+              with 
+                id = RoleId with
+                  operator
+                  party = creator
+                ..  

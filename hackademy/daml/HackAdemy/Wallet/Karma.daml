@@ -10,7 +10,7 @@ template KarmaWallet
     owner : Party
     id : WalletId
     provider : Party
-    psid : Decimal
+    psid : Text
     walletType : WalletType
     amount : Decimal
     creationTime : Time
@@ -18,9 +18,7 @@ template KarmaWallet
   where
     signatory provider
 
-    --ensure provider /= owner
-
-    ensure id == WalletId with provider, owner, walletType
+    ensure id == WalletId with provider, psid, walletType && provider /= owner
     key id : WalletId
     maintainer key.provider
 
