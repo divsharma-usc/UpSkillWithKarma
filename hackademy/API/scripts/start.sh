@@ -5,7 +5,7 @@ set -euo pipefail
 
 BASE=$(dirname $0)/..
 cd $BASE
-
+mvn package
 VERSION=$(cat daml.yaml | grep version | grep -v sdk-version | tr -d ' ' | cut -d':' -f2 | tr -d '\n' | tr -d '\r')
 APP_JAR=./target/karma-0.0.1-SNAPSHOT.jar
 
