@@ -2,21 +2,29 @@ daml 1.2
 module HackAdemy.Karma.Karma where
 
 import DA.Time()
+import DA.Optional
+import DA.List
 import HackAdemy.Karma.Lang
 
 template Karma
     with
         owner : Party
         operator : Party
+        courseProvider : Party
         psid : Text
         point : Decimal
         cId : Text
         creationTime : Time
         id : KarmaId
+        signatories : [Party]
     where
-        signatory operator
+        signatory signatories
         observer  owner
 
         ensure id == KarmaId with  cId, psid, operator && owner /= operator
+            && owner /= courseProvider
+            && isSome  (elemIndex operator signatories) 
+            && isSome  (elemIndex owner signatories) 
+            && isSome  (elemIndex courseProvider signatories) 
         key id : KarmaId
         maintainer key.operator

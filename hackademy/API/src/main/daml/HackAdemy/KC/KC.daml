@@ -17,36 +17,16 @@ template KC
         id : KCId
         amount : Decimal
         penality : Decimal
-        isDone : Bool
+        signatories :[Party]
         -------------------------
         creationTime : Time
         modificationTime : Time
     where
-        signatory taker, operator
+        signatory signatories
         
         ensure id == KCId with  cId, psid, operator
         key id : KCId
         maintainer key.operator
-
-        controller operator can
-            Settle : (ContractId KC, ContractId Karma)
-                do
-                    now <- getTime
-                    assertMsg "DvP must be in UnSettled State" (status == UnSettled)
-                    assertMsg "Course Provider approval" (isDone)
-
-                    kCCid <- create this with 
-                        status = Settled
-                        modificationTime = now
-
-                    kid <- create Karma with
-                        owner = taker
-                        point = amount
-                        id =  KarmaId with cId, psid, operator
-                        creationTime = now
-                        ..
-
-                    pure( kCCid, kid)
 
         controller taker can
             Cancel_KC : ContractId KC
@@ -58,10 +38,23 @@ template KC
                         modificationTime = now
         
         controller provider can
-            Approve_KC : ContractId KC
+            Approve_KC : (ContractId KC, ContractId Karma)
                 do
                     now <- getTime
+
                     assertMsg "DvP must be in UnSettled State" (status == UnSettled)
-                    create this with 
-                        isDone = True
+                    kCCid <- create this with 
                         modificationTime = now
+                        status = Settled
+                        signatories = provider :: signatories
+                    
+                    kid <- create Karma with
+                        owner = taker
+                        courseProvider = provider
+                        point = amount
+                        id =  KarmaId with cId, psid, operator
+                        creationTime = now
+                        signatories = provider :: signatories
+                        ..
+
+                    pure( kCCid, kid)

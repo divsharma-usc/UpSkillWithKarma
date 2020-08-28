@@ -80,7 +80,7 @@ template KarmaWallet
             operator = provider
             amount = course.amount
             penality = course.penality
-            isDone = False
+            signatories = [provider, owner]
             ..
 
           kCid <- create this with
