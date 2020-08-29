@@ -22,6 +22,7 @@
 		<skip.it.tests>false</skip.it.tests>
 		<skip.e2e.tests>true</skip.e2e.tests>
 		<skip.e2e-be.tests>true</skip.e2e-be.tests>
+		<jwtt.version>0.10.7</jwtt.version>
 	</properties>
 
 	<dependencies>
@@ -61,6 +62,32 @@
 			<artifactId>daml-lf-dev-archive-java-proto</artifactId>
 			<version>${daml-sdk.version}</version>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-api</artifactId>
+			<version>${jwtt.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-impl</artifactId>
+			<version>${jwtt.version}</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-jackson</artifactId>
+			<version>${jwtt.version}</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-webflux</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.projectreactor</groupId>
+			<artifactId>reactor-spring</artifactId>
+			<version>1.0.1.RELEASE</version>
 		</dependency>
 	</dependencies>
 
