@@ -1,7 +1,32 @@
-/.daml
 target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**
+!**/src/test/**
+logs
+
+### IntelliJ IDEA ###
 .idea
+*.iws
+*.iml
+*.ipr
+
+### VS Code ###
+.vscode/
+.project
+.settings
+
+### DAML ###
+.daml
+.package-database
 *.log
-*.xml
-*.jar
-*.dar
+api/navigator.history
+
+### MacOS ###
+.DS_Store
+
+### GitLab CI ###
+.gitlab-ci.yml
+
+## E2e
+*.classpath
+*.factorypath
