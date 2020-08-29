@@ -1,7 +1,6 @@
 sdk-version: 1.2.0
 name: hackademy
 source: src/main/daml
-init-script: Setup:initialize
 parties:
   - Operator
   - Emp1
