@@ -13,4 +13,5 @@ data Status
   = Settled
   | UnSettled
   | Cancel
+  | Redeem
   deriving (Eq, Show)

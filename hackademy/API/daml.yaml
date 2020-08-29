@@ -13,5 +13,6 @@ dependencies:
   - daml-prim
   - daml-stdlib
   - daml-script
+  - daml-trigger
 sandbox-options:
   - --wall-clock-time

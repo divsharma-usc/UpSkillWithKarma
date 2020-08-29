@@ -1,0 +1,31 @@
+daml 1.2
+module OperatorTrigger where
+
+import Daml.Trigger
+import DA.Next.Map
+import DA.Foldable
+
+import HackAdemy.KC.KC
+import HackAdemy.KC.Lang
+import HackAdemy.Wallet.Karma
+import HackAdemy.Wallet.Lang
+
+copyTrigger : Trigger ()
+copyTrigger = Trigger
+  { initialize = \_acs -> ()
+  , updateState = \_acs _message () -> ()
+  , rule = redeemRule
+  , registeredTemplates = AllInDar
+  , heartbeat = None
+  }
+
+
+redeemRule : Party -> ACS -> Time -> Map CommandId [Command] -> () -> TriggerA ()
+redeemRule party acs _time commandsInFlight () = do
+    let kcs : [(ContractId KC, KC)] = getContracts @KC acs
+    
+    let cancelKCs = Prelude.filter (\(_, kc) -> kc.status == Cancel) kcs
+
+    forA_ cancelKCs $ \(kcCid,kc) -> do
+      dedupExercise kcCid Redeemded_KC
+      dedupExerciseByKey @KarmaWallet (WalletId with provider = kc.operator, psid = kc.psid, walletType = Dead)  $  Add_Amount kc.penality

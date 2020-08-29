@@ -36,6 +36,15 @@ template KC
                     create this with 
                         status = Cancel
                         modificationTime = now
+
+        controller operator can
+            Redeemded_KC : ContractId KC
+                do
+                    now <- getTime
+                    assertMsg "DvP must be in UnSettled State" (status == Cancel)
+                    create this with 
+                        status = Redeem
+                        modificationTime = now
         
         controller provider can
             Approve_KC : (ContractId KC, ContractId Karma)
