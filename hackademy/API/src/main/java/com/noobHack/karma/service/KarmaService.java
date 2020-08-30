@@ -4,6 +4,7 @@ import com.noobHack.karma.Utility.JWTUtility;
 import com.noobHack.karma.Query.KarmaQuery.Psid;
 import com.noobHack.karma.Query.KarmaQuery.Query;
 import com.noobHack.karma.dto.QueryResponse.KarmaQuery.QueryResponse;
+import hackademy.karma.karma.Karma;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
@@ -38,7 +39,8 @@ public class KarmaService {
         WebClient.RequestHeadersSpec<?> request = webClient.method(HttpMethod.POST)
                 .uri("/v1/query")
                 .body(BodyInserters.fromValue(Query.builder()
-                        .templateIds(Collections.singletonList("HackAdemy.Karma.Karma:Karma")) // Todo : Get from
+                        .templateIds(Collections.singletonList(
+                                Karma.TEMPLATE_ID.getModuleName() + ":" + Karma.TEMPLATE_ID.getEntityName()))
                         .query(Psid.builder()
                                 .psid("1") // Todo : Hard Coded here
                                 .build())
