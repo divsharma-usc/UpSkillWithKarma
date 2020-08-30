@@ -28,8 +28,8 @@ public class KarmaService {
     @Value("${HTTP-JSON-API.port}")
     private String port;
 
-    public String getKarma(String party) {
-        String token = jwtUtility.getBearerToken(party);
+    public String getKarma(String psid) {
+        String token = jwtUtility.getBearerToken("Operator");
 
         WebClient webClient = WebClient.builder()
                 .baseUrl("http://" + host + ":" + port)
@@ -42,7 +42,7 @@ public class KarmaService {
                         .templateIds(Collections.singletonList(
                                 Karma.TEMPLATE_ID.getModuleName() + ":" + Karma.TEMPLATE_ID.getEntityName()))
                         .query(Psid.builder()
-                                .psid("1") // Todo : Hard Coded here
+                                .psid(psid)
                                 .build())
                         .build()));
 
