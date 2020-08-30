@@ -1,0 +1,5 @@
+ledgerId : MyLedger
+applicationId : NoobHack-API
+HTTP-JSON-API:
+  host: localhost
+  port: 7576

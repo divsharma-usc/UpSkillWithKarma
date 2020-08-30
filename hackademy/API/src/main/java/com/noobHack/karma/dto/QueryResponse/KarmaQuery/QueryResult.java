@@ -1,4 +1,4 @@
-package com.noobHack.karma.dto.Query;
+package com.noobHack.karma.dto.QueryResponse.KarmaQuery;
 
 import com.noobHack.karma.model.Karma.KarmaKey;
 import com.noobHack.karma.model.Karma.KarmaPayload;

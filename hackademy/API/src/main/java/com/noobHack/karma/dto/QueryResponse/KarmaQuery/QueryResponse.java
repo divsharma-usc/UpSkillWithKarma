@@ -1,4 +1,4 @@
-package com.noobHack.karma.dto.Query;
+package com.noobHack.karma.dto.QueryResponse.KarmaQuery;
 
 import lombok.Data;
 

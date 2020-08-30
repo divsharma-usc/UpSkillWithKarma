@@ -1,4 +1,4 @@
-package com.noobHack.karma.controller;
+package com.noobHack.karma.Utility;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,7 +9,7 @@ import java.util.List;
 @Data
 @Builder
 @AllArgsConstructor
-public class Payload {
+public class JWTPayload {
     private String ledgerId;
     private String applicationId;
     private List<String> actAs;

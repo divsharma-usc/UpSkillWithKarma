@@ -1,4 +1,4 @@
-package com.noobHack.karma.controller;
+package com.noobHack.karma.Query.KarmaQuery;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
