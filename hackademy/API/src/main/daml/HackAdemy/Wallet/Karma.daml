@@ -60,13 +60,13 @@ template KarmaWallet
     controller owner can
       Spend : (ContractId KarmaWallet, ContractId KC)
         with 
-          cId : Text
+          courseId : Text
         do
           now <- getTime
 
           assertMsg "Can only spend from dead coinds" (walletType == Dead)
 
-          (_, course) <- fetchByKey @Course (CourseId with cId , operator = provider)
+          (_, course) <- fetchByKey @Course (CourseId with cId  = courseId; operator = provider)
           let newAmount = amount - course.amount
           assertMsg "Invalid Coins" (newAmount > 0.0)
 
@@ -74,13 +74,14 @@ template KarmaWallet
             status = UnSettled
             taker = owner
             provider = course.creator
-            id = KCId with cId, psid, operator = provider
+            id = KCId with cId = courseId, psid, operator = provider
             creationTime = now
             modificationTime = now
             operator = provider
             amount = course.amount
             penality = course.penality
             signatories = [provider, owner]
+            cId = courseId
             ..
 
           kCid <- create this with
