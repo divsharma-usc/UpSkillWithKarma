@@ -9,7 +9,7 @@ import HackAdemy.Karma.Lang
 template KC
     with
         status : Status
-        cId : Text
+        courseId : Text
         psid : Text
         operator : Party
         taker : Party
@@ -24,7 +24,7 @@ template KC
     where
         signatory signatories
         
-        ensure id == KCId with  cId, psid, operator
+        ensure id == KCId with courseId, psid, operator
         key id : KCId
         maintainer key.operator
 
@@ -61,7 +61,7 @@ template KC
                         owner = taker
                         courseProvider = provider
                         point = amount
-                        id =  KarmaId with cId, psid, operator
+                        id =  KarmaId with courseId, psid, operator
                         creationTime = now
                         signatories = provider :: signatories
                         ..

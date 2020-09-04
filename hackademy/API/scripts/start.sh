@@ -38,6 +38,10 @@ startSandbox() {
   waitport 6865
   echo "<< Sandbox ready"
   echo ""
+  echo ">> Starting Startup Script..."
+  daml script --dar target/hackademy.dar --script-name Setup:initialize --ledger-host localhost --ledger-port 6865
+  echo "<< Startup Script done"
+  echo ""
 }
 
 startNavigator() {
@@ -49,6 +53,23 @@ startNavigator() {
   echo ""
 }
 
+startDAMLJSONAPIs(){
+  echo ">> Starting JSON Ledger API..."
+  daml json-api --ledger-host localhost --ledger-port 6865 \
+    --http-port 7576 --max-inbound-message-size 4194304 --package-reload-interval 5s \
+    --application-id NoobHack-API
+  waitport 7576
+  echo "<< JSON API ready"
+  echo ""
+}
+
+startDAMLTrigger(){
+  echo ">> Starting  DAML Trigger..."
+  daml trigger --dar target/hackademy.dar --trigger-name OperatorTrigger:copyTrigger \
+    --ledger-host localhost --ledger-port 6865 --ledger-party Operator
+  echo "<< DAML Trigger ready"
+  echo ""
+}
 startApp() {
   echo ">> Starting App..."
   java -jar $APP_JAR $@ &
@@ -63,6 +84,8 @@ printf "${CSI}2J${CSI}1;${viewport}r"
 
 startSandbox
 startNavigator
+startDAMLJSONAPIs
+startDAMLTrigger
 #startApp
 
 cmdpre="${CSI}${cmd};1H${CSI}2K"

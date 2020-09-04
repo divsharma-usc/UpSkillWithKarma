@@ -41,7 +41,7 @@ template CourseCreatorRole
     controller creator can
         nonconsuming Create_Course : ContractId Course
           with
-            cId : Text
+            courseId : Text
             minimumTimeSpend : Decimal
             minimumPassingScore : Decimal
             amount : Decimal
@@ -49,7 +49,7 @@ template CourseCreatorRole
           do
             now <- getTime
             create Course with 
-              courseId = CourseId with cId = cId, operator
+              courseKId = CourseKId with courseId, operator
               creationTime = now
               modificationTime = now
               observers = [operator, creator]

@@ -1,4 +1,4 @@
-ledgerId : MyLedger
+ledgerId : 15c5ee20-9515-4e15-93cd-4584f97b3c17
 applicationId : NoobHack-API
 HTTP-JSON-API:
   host: localhost

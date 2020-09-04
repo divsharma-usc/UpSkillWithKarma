@@ -66,7 +66,7 @@ template KarmaWallet
 
           assertMsg "Can only spend from dead coinds" (walletType == Dead)
 
-          (_, course) <- fetchByKey @Course (CourseId with cId  = courseId; operator = provider)
+          (_, course) <- fetchByKey @Course (CourseKId with courseId; operator = provider)
           let newAmount = amount - course.amount
           assertMsg "Invalid Coins" (newAmount > 0.0)
 
@@ -74,14 +74,13 @@ template KarmaWallet
             status = UnSettled
             taker = owner
             provider = course.creator
-            id = KCId with cId = courseId, psid, operator = provider
+            id = KCId with courseId, psid, operator = provider
             creationTime = now
             modificationTime = now
             operator = provider
             amount = course.amount
             penality = course.penality
             signatories = [provider, owner]
-            cId = courseId
             ..
 
           kCid <- create this with

@@ -11,14 +11,14 @@ template Course
         creator : Party
         operator : Party
         -----------------
-        cId : Text
+        courseId : Text
         -----------------
         minimumTimeSpend : Decimal
         minimumPassingScore : Decimal
         amount : Decimal
         penality : Decimal
         ------------------
-        courseId : CourseId
+        courseKId : CourseKId
         creationTime : Time
         modificationTime : Time
         observers : [Party]
@@ -26,8 +26,8 @@ template Course
         signatory creator, operator
         observer observers
 
-        ensure courseId == CourseId with cId, operator && penality <= amount
-        key courseId : CourseId
+        ensure courseKId == CourseKId with courseId, operator && penality <= amount
+        key courseKId : CourseKId
         maintainer key.operator
 
         controller operator can

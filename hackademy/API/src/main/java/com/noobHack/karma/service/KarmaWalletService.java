@@ -58,7 +58,7 @@ public class KarmaWalletService {
         return queryResponse;
     }
 
-    public String getKarmaWallet(String psid, String party){
+    public String getKarmaWallet(String psid, String party) {
         String token = jwtUtility.getBearerToken(party);
 
         WebClient webClient = WebClient.builder()

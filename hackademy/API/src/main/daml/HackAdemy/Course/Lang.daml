@@ -2,8 +2,8 @@ daml 1.2
 
 module HackAdemy.Course.Lang where
 
-data CourseId = CourseId
+data CourseKId = CourseKId
   with
-    cId : Text
+    courseId : Text
     operator : Party
   deriving (Eq, Show)

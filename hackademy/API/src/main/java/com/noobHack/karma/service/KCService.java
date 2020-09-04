@@ -25,7 +25,7 @@ public class KCService {
     @Value("${HTTP-JSON-API.port}")
     private String port;
 
-    public String approveKC(String psid, String cId, String party){
+    public String approveKC(String psid, String cId, String party) {
         String token = jwtUtility.getBearerToken("Operator");
 
         WebClient webClient = WebClient.builder()

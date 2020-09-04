@@ -4,7 +4,7 @@ module HackAdemy.KC.Lang where
 
 data KCId = KCId
   with
-    cId : Text
+    courseId : Text
     psid : Text
     operator : Party
   deriving (Eq, Show)

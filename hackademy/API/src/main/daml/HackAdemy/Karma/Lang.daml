@@ -4,7 +4,7 @@ module HackAdemy.Karma.Lang where
 
 data KarmaId = KarmaId
   with
-    cId : Text
+    courseId : Text
     psid : Text
     operator : Party
   deriving (Eq, Show)

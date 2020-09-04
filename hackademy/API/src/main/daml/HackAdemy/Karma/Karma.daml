@@ -13,7 +13,7 @@ template Karma
         courseProvider : Party
         psid : Text
         point : Decimal
-        cId : Text
+        courseId : Text
         creationTime : Time
         id : KarmaId
         signatories : [Party]
@@ -21,7 +21,7 @@ template Karma
         signatory signatories
         observer  owner
 
-        ensure id == KarmaId with  cId, psid, operator && owner /= operator
+        ensure id == KarmaId with courseId, psid, operator && owner /= operator
             && owner /= courseProvider
             && isSome  (elemIndex operator signatories) 
             && isSome  (elemIndex owner signatories) 

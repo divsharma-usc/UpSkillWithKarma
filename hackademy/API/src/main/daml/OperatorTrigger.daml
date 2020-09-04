@@ -28,4 +28,4 @@ redeemRule party acs _time commandsInFlight () = do
 
     forA_ cancelKCs $ \(kcCid,kc) -> do
       dedupExercise kcCid Redeemded_KC
-      dedupExerciseByKey @KarmaWallet (WalletId with provider = kc.operator, psid = kc.psid, walletType = Dead)  $  Add_Amount kc.penality
+      dedupExerciseByKey @KarmaWallet (WalletId with provider = kc.operator, psid = kc.psid, walletType = Dead)  $  Add_Amount  $ kc.amount - kc.penality
