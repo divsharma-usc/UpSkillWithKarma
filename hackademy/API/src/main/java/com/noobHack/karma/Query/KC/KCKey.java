@@ -9,6 +9,6 @@ import lombok.Data;
 @AllArgsConstructor
 public class KCKey {
     private String psid;
-    private String cId;
+    private String courseId;
     private String operator;
 }

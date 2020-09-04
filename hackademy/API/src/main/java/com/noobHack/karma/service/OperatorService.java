@@ -41,7 +41,7 @@ public class OperatorService {
                                 Course.TEMPLATE_ID.getModuleName() + ":" + Course.TEMPLATE_ID.getEntityName())
                         .key(CourseKey.builder()
                                 .operator("Operator")
-                                .cId(cId)
+                                .courseId(cId)
                                 .build())
                         .choice("Add_Observer")
                         .argument(CArg.builder()

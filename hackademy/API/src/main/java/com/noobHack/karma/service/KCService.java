@@ -26,7 +26,7 @@ public class KCService {
     private String port;
 
     public String approveKC(String psid, String cId, String party) {
-        String token = jwtUtility.getBearerToken("Operator");
+        String token = jwtUtility.getBearerToken(party);
 
         WebClient webClient = WebClient.builder()
                 .baseUrl("http://" + host + ":" + port)
@@ -40,10 +40,10 @@ public class KCService {
                                 KC.TEMPLATE_ID.getModuleName() + ":" + KC.TEMPLATE_ID.getEntityName())
                         .key(KCKey.builder()
                                 .operator("Operator")
-                                .cId(cId)
+                                .courseId(cId)
                                 .psid(psid)
                                 .build())
-                        .choice("Add_Observer")
+                        .choice("Approve_KC")
                         .argument(KCApproveArg.builder().build())
                         .build()));
 

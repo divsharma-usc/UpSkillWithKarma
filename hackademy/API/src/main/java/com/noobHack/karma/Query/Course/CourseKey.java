@@ -8,6 +8,6 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class CourseKey {
-    private String cId;
+    private String courseId;
     private String operator;
 }

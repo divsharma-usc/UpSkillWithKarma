@@ -8,4 +8,5 @@ import lombok.Data;
 @Builder
 @AllArgsConstructor
 public class KCApproveArg {
+    private String argKC;
 }
