@@ -1,8 +1,8 @@
 package com.noobHack.karma.service;
 
-import com.noobHack.karma.Query.Course.CArg;
-import com.noobHack.karma.Query.Course.CourseAddObQuery;
-import com.noobHack.karma.Query.Course.CourseKey;
+import com.noobHack.karma.Exercise.Course.AddNewObserver;
+import com.noobHack.karma.Exercise.ExerciseChoiceM;
+import com.noobHack.karma.Key.CourseKey;
 import com.noobHack.karma.Utility.JWTUtility;
 import hackademy.course.course.Course;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +36,7 @@ public class OperatorService {
 
         WebClient.RequestHeadersSpec<?> request = webClient.method(HttpMethod.POST)
                 .uri("/v1/exercise")
-                .body(BodyInserters.fromValue(CourseAddObQuery.builder()
+                .body(BodyInserters.fromValue(ExerciseChoiceM.builder()
                         .templateId(
                                 Course.TEMPLATE_ID.getModuleName() + ":" + Course.TEMPLATE_ID.getEntityName())
                         .key(CourseKey.builder()
@@ -44,7 +44,7 @@ public class OperatorService {
                                 .courseId(cId)
                                 .build())
                         .choice("Add_Observer")
-                        .argument(CArg.builder()
+                        .argument(AddNewObserver.builder()
                                 .newObserver(party)
                                 .build())
                         .build()));

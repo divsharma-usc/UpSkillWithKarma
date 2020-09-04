@@ -1,11 +1,12 @@
 package com.noobHack.karma.service;
 
-import com.noobHack.karma.Query.KarmaWalletQuery.KarmaWalletQuery;
-import com.noobHack.karma.Query.KarmaWalletQuery.KwArg;
-import com.noobHack.karma.Query.KarmaWalletQuery.KwKey;
-import com.noobHack.karma.Query.SilverKarma.Query;
-import com.noobHack.karma.Query.SilverKarma.SilverQuery;
+import com.noobHack.karma.Exercise.ExerciseChoiceM;
+import com.noobHack.karma.Exercise.KarmaWallet.Spend;
+import com.noobHack.karma.Key.KarmaWalletKey;
+import com.noobHack.karma.Query.Query;
+import com.noobHack.karma.Query.SilverKarma.SilverCoinFilter;
 import com.noobHack.karma.Utility.JWTUtility;
+import com.noobHack.karma.dto.QueryResponse.KC.KCQueryResponse;
 import hackademy.kc.kc.KC;
 import hackademy.wallet.karma.KarmaWallet;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
 
+import java.math.BigDecimal;
 import java.util.Collections;
 
 @Service
@@ -41,16 +43,16 @@ public class KarmaWalletService {
 
         WebClient.RequestHeadersSpec<?> request = webClient.method(HttpMethod.POST)
                 .uri("/v1/exercise")
-                .body(BodyInserters.fromValue(KarmaWalletQuery.builder()
+                .body(BodyInserters.fromValue(ExerciseChoiceM.builder()
                         .templateId(
                                 KarmaWallet.TEMPLATE_ID.getModuleName() + ":" + KarmaWallet.TEMPLATE_ID.getEntityName())
-                        .key(KwKey.builder()
+                        .key(KarmaWalletKey.builder()
                                 .provider("Operator")
                                 .psid(psid)
                                 .walletType("Dead")
                                 .build())
                         .choice("Spend")
-                        .argument(KwArg.builder()
+                        .argument(Spend.builder()
                                 .courseId(cId)
                                 .build())
                         .build()));
@@ -73,10 +75,10 @@ public class KarmaWalletService {
 
         WebClient.RequestHeadersSpec<?> request = webClient.method(HttpMethod.POST)
                 .uri("/v1/fetch")
-                .body(BodyInserters.fromValue(KarmaWalletQuery.builder()
+                .body(BodyInserters.fromValue(ExerciseChoiceM.builder()
                         .templateId(
                                 KarmaWallet.TEMPLATE_ID.getModuleName() + ":" + KarmaWallet.TEMPLATE_ID.getEntityName())
-                        .key(KwKey.builder()
+                        .key(KarmaWalletKey.builder()
                                 .provider("Operator")
                                 .psid(psid)
                                 .walletType("Dead")
@@ -105,17 +107,19 @@ public class KarmaWalletService {
                 .body(BodyInserters.fromValue(Query.builder()
                         .templateIds(Collections.singletonList(
                                 KC.TEMPLATE_ID.getModuleName() + ":" + KC.TEMPLATE_ID.getEntityName()))
-                        .query(SilverQuery.builder()
+                        .query(SilverCoinFilter.builder()
                                 .status("UnSettled")
                                 .taker(party)
                                 .build())
                         .build()));
 
-        String queryResponse = request.exchange()
+        KCQueryResponse kcQueryResponse= request.exchange()
                 .block()
-                .bodyToMono(String.class)
+                .bodyToMono(KCQueryResponse.class)
                 .block();
 
-        return queryResponse;
+        return kcQueryResponse.getResult().stream()
+                .map(o -> o.getPayload().getAmount())
+                .reduce(BigDecimal.ZERO, BigDecimal::add).toString();
     }
 }

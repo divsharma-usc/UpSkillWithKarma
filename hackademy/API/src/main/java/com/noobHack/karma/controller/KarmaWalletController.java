@@ -14,17 +14,17 @@ public class KarmaWalletController {
 
     @PutMapping("/{id}/{party}/{cId}")
     @ResponseBody
-    public String getKarmas(@PathVariable String id, @PathVariable String party, @PathVariable String cId) {
+    public String spendKarmas(@PathVariable String id, @PathVariable String party, @PathVariable String cId) {
         return karmaWalletService.spendKarmaWallet(id, party, cId);
     }
 
-    @GetMapping("/{id}/{party}/{cId}")
+    @GetMapping("/{id}/{party}")
     @ResponseBody
-    public String Karmas(@PathVariable String id, @PathVariable String party) {
+    public String getBrowndKarmas(@PathVariable String id, @PathVariable String party) {
         return karmaWalletService.getKarmaWallet(id, party);
     }
 
-    @GetMapping("silverCoins/{id}/{party}")
+    @GetMapping("silverKarmas/{id}/{party}")
     @ResponseBody
     public String getSilverKarmas(@PathVariable String id, @PathVariable String party) {
         return karmaWalletService.geSilvertKarmaWallet(id, party);

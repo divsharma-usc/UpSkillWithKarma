@@ -1,15 +1,16 @@
-package com.noobHack.karma.Query.KC;
+package com.noobHack.karma.Exercise;
 
+import com.noobHack.karma.Key.Key;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 
-@Data
 @Builder
+@Data
 @AllArgsConstructor
-public class KCAppoveQuery {
+public class ExerciseChoiceM {
     private String templateId;
-    private KCKey key;
+    private Key key;
     private String choice;
-    private KCApproveArg argument;
+    private Argument argument;
 }

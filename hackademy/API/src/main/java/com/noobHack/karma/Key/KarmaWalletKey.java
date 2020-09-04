@@ -1,7 +1,5 @@
-package com.noobHack.karma.Query.KarmaWalletQuery;
+package com.noobHack.karma.Key;
 
-import hackademy.wallet.lang.WalletId;
-import hackademy.wallet.lang.WalletType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -9,7 +7,7 @@ import lombok.Data;
 @Data
 @Builder
 @AllArgsConstructor
-public class KwKey {
+public class KarmaWalletKey implements Key{
     private String provider;
     private String psid;
     private String walletType;

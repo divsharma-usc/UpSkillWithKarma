@@ -1,13 +1,14 @@
-package com.noobHack.karma.Query.Course;
+package com.noobHack.karma.Key;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 
-@Builder
 @Data
+@Builder
 @AllArgsConstructor
-public class CourseKey {
-    private String courseId;
+public class KarmaKey implements  Key{
+    private String cId;
+    private String psid;
     private String operator;
 }

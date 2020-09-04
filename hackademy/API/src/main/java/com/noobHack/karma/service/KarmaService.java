@@ -1,9 +1,9 @@
 package com.noobHack.karma.service;
 
+import com.noobHack.karma.Query.Query;
 import com.noobHack.karma.Utility.JWTUtility;
-import com.noobHack.karma.Query.KarmaQuery.Psid;
-import com.noobHack.karma.Query.KarmaQuery.Query;
-import com.noobHack.karma.dto.QueryResponse.KarmaQuery.QueryResponse;
+import com.noobHack.karma.Query.Karma.PsidFilter;
+import com.noobHack.karma.dto.QueryResponse.Karma.KarmaQueryResponse;
 import hackademy.karma.karma.Karma;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -41,17 +41,17 @@ public class KarmaService {
                 .body(BodyInserters.fromValue(Query.builder()
                         .templateIds(Collections.singletonList(
                                 Karma.TEMPLATE_ID.getModuleName() + ":" + Karma.TEMPLATE_ID.getEntityName()))
-                        .query(Psid.builder()
+                        .query(PsidFilter.builder()
                                 .psid(psid)
                                 .build())
                         .build()));
 
-        QueryResponse queryResponse = request.exchange()
+        KarmaQueryResponse karmaQueryResponse = request.exchange()
                 .block()
-                .bodyToMono(QueryResponse.class)
+                .bodyToMono(KarmaQueryResponse.class)
                 .block();
 
-        return queryResponse.getResult().stream()
+        return karmaQueryResponse.getResult().stream()
                 .map(o -> o.getPayload().getPoint())
                 .reduce(BigDecimal.ZERO, BigDecimal::add).toString();
     }

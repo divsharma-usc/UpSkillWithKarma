@@ -1,4 +1,4 @@
-package com.noobHack.karma.Query.KarmaQuery;
+package com.noobHack.karma.Query;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -6,10 +6,11 @@ import lombok.Data;
 
 import java.util.List;
 
-@Data
+
 @Builder
+@Data
 @AllArgsConstructor
 public class Query {
     private List<String> templateIds;
-    private Psid query;
+    private QueryFilter query;
 }

@@ -1,16 +1,16 @@
-package com.noobHack.karma.dto.QueryResponse.KarmaQuery;
+package com.noobHack.karma.dto.QueryResponse.Karma;
 
-import com.noobHack.karma.model.Karma.KarmaKey;
-import com.noobHack.karma.model.Karma.KarmaPayload;
+import com.noobHack.karma.Key.KarmaKey;
 import lombok.Data;
 
 import java.util.List;
 
 @Data
-public class QueryResult {
+public class
+KarmaQueryResult {
     private String agreementText;
     private String contractId;
-    private KarmaKey key;
+    private KarmaKeyDTO key;
     private List<String> observers;
     private KarmaPayload payload;
     private List<String> signatories;
