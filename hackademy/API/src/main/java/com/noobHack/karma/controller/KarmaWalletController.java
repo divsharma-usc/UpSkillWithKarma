@@ -23,4 +23,10 @@ public class KarmaWalletController {
     public String Karmas(@PathVariable String id, @PathVariable String party) {
         return karmaWalletService.getKarmaWallet(id, party);
     }
+
+    @GetMapping("silverCoins/{id}/{party}")
+    @ResponseBody
+    public String getSilverKarmas(@PathVariable String id, @PathVariable String party) {
+        return karmaWalletService.geSilvertKarmaWallet(id, party);
+    }
 }

@@ -3,7 +3,10 @@ package com.noobHack.karma.service;
 import com.noobHack.karma.Query.KarmaWalletQuery.KarmaWalletQuery;
 import com.noobHack.karma.Query.KarmaWalletQuery.KwArg;
 import com.noobHack.karma.Query.KarmaWalletQuery.KwKey;
+import com.noobHack.karma.Query.SilverKarma.Query;
+import com.noobHack.karma.Query.SilverKarma.SilverQuery;
 import com.noobHack.karma.Utility.JWTUtility;
+import hackademy.kc.kc.KC;
 import hackademy.wallet.karma.KarmaWallet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -12,6 +15,8 @@ import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
+
+import java.util.Collections;
 
 @Service
 public class KarmaWalletService {
@@ -75,6 +80,34 @@ public class KarmaWalletService {
                                 .provider("Operator")
                                 .psid(psid)
                                 .walletType("Dead")
+                                .build())
+                        .build()));
+
+        String queryResponse = request.exchange()
+                .block()
+                .bodyToMono(String.class)
+                .block();
+
+        return queryResponse;
+    }
+
+
+    public String geSilvertKarmaWallet(String psid, String party){
+        String token = jwtUtility.getBearerToken(party);
+
+        WebClient webClient = WebClient.builder()
+                .baseUrl("http://" + host + ":" + port)
+                .defaultHeader(HttpHeaders.AUTHORIZATION, "Bearer " + token)
+                .build();
+
+        WebClient.RequestHeadersSpec<?> request = webClient.method(HttpMethod.POST)
+                .uri("/v1/query")
+                .body(BodyInserters.fromValue(Query.builder()
+                        .templateIds(Collections.singletonList(
+                                KC.TEMPLATE_ID.getModuleName() + ":" + KC.TEMPLATE_ID.getEntityName()))
+                        .query(SilverQuery.builder()
+                                .status("UnSettled")
+                                .taker(party)
                                 .build())
                         .build()));
 
