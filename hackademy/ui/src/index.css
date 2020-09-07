@@ -11,3 +11,20 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.App {
+  text-align: center;
+}
+
+.App-header {
+  background-color: #ffffff;
+  min-height: 95px;
+  display: flex;
+  color: white;
+  border-bottom: 1px solid #d4d4d4;
+  font-family: UniversNext,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  position: relative;
+  top: 0;
+  width: 100%;
+  z-index: 1001;
+}

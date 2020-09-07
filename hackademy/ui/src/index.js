@@ -1,13 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from "react-router-dom";
+import Dashboard from './components/Dashboard/Dashboard'
+import CourseInfo from './components/CourseInfo/CourseInfo'
 import './index.css';
-import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Router>
+    <div className= "App">
+      <header className="App-header">
+      </header>
+      <Route path="/" component={Dashboard} />
+      <Route path="/courseInfo" component={CourseInfo} />
+    </div>
+  </Router>,
   document.getElementById('root')
 );
 

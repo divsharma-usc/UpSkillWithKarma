@@ -1,10 +1,9 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import styles from './Dashboard.module.css';
 
 const Dashboard = () => (
   <div className={styles.Dashboard}>
-    <img src= {process.env.PUBLIC_URL + "/images/students.jpg"}></img>
+    <img className= {styles.bigImg} src= {process.env.PUBLIC_URL + "/images/students.jpg"}></img>
     <div><h1>Explore Courses</h1></div>
     <div id = {styles.innerDashboard}>
 
