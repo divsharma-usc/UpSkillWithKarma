@@ -6,16 +6,16 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="karma" />
+        <module name="hackademy" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="karma" target="1.8" />
+      <module name="hackademy" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="karma" options="-parameters" />
+      <module name="hackademy" options="-parameters" />
     </option>
   </component>
 </project>
