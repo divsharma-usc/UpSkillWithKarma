@@ -6,8 +6,7 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class
-KCQueryResult {
+public class KCQueryResult {
     private String agreementText;
     private String contractId;
     private KCKeyDTO key;

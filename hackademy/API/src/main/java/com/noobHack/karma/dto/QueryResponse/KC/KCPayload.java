@@ -23,4 +23,3 @@ public class KCPayload implements Payload {
     private String status;
     private BigDecimal penality;
 }
-

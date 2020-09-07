@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 @Builder
 @AllArgsConstructor
-public class KarmaWalletKey implements Key{
+public class KarmaWalletKey implements Key {
     private String provider;
     private String psid;
     private String walletType;

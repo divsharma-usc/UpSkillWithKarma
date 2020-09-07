@@ -93,8 +93,7 @@ public class KarmaWalletService {
         return queryResponse;
     }
 
-
-    public String geSilvertKarmaWallet(String psid, String party){
+    public String geSilvertKarmaWallet(String psid, String party) {
         String token = jwtUtility.getBearerToken(party);
 
         WebClient webClient = WebClient.builder()
@@ -113,7 +112,7 @@ public class KarmaWalletService {
                                 .build())
                         .build()));
 
-        KCQueryResponse kcQueryResponse= request.exchange()
+        KCQueryResponse kcQueryResponse = request.exchange()
                 .block()
                 .bodyToMono(KCQueryResponse.class)
                 .block();

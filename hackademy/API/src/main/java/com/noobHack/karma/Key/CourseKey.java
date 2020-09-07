@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 @Builder
 @AllArgsConstructor
-public class CourseKey implements Key{
+public class CourseKey implements Key {
     private String courseId;
     private String operator;
 }

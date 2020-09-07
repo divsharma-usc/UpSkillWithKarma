@@ -6,8 +6,7 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class
-KarmaQueryResult {
+public class KarmaQueryResult {
     private String agreementText;
     private String contractId;
     private KarmaKeyDTO key;

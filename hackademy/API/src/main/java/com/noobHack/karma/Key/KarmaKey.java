@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 @Builder
 @AllArgsConstructor
-public class KarmaKey implements  Key{
+public class KarmaKey implements Key {
     private String cId;
     private String psid;
     private String operator;
