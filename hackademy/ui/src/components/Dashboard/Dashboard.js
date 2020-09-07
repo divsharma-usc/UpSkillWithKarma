@@ -1,7 +1,15 @@
 import React from 'react';
 import styles from './Dashboard.module.css';
+import { useHistory } from 'react-router-dom';
 
-const Dashboard = () => (
+const Dashboard = () => {
+  const history = useHistory();
+
+  const handleClick = () => {
+      history.push("/courseInfo");
+  }
+
+return (
   <div className={styles.Dashboard}>
     <img className= {styles.bigImg} src= {process.env.PUBLIC_URL + "/images/students.jpg"}></img>
     <div><h1>Explore Courses</h1></div>
@@ -13,7 +21,7 @@ const Dashboard = () => (
           <div class={styles.courseDetails}> 
             Diversity is in our roots. We believe that diversity brings benefits for our customers, our business and our people
           </div>
-          <button class={styles.readMore}>Read More</button>
+          <button class={styles.readMore} onClick={handleClick}>Read More</button>
         </div>
 
         <div class = {styles.card}>
@@ -64,6 +72,7 @@ const Dashboard = () => (
     </div>
   </div>
 );
+}
 
 Dashboard.propTypes = {};
 

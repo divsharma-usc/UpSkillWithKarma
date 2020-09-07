@@ -20,11 +20,42 @@ code {
   background-color: #ffffff;
   min-height: 95px;
   display: flex;
-  color: white;
+  color: #1f1f1f;
   border-bottom: 1px solid #d4d4d4;
   font-family: UniversNext,"Helvetica Neue",Helvetica,Arial,sans-serif;
   position: relative;
   top: 0;
   width: 100%;
   z-index: 1001;
+  display: flex;
+  align-items: center;
+  position: sticky;
+}
+.App-header h2{
+  margin-left: 20px
+}
+
+#mainLogo{
+  height: 35px;
+  margin-left: 150px;
+}
+
+#footer1{
+  height: 250px;
+  background-color: #1f1f1f;
+  margin-top: 130px;
+  color : #fff;
+  display : flex;
+  justify-content: centre;
+}
+#footer2{
+  height: 100px;
+  background-color: #161616;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#footer2 p{
+  margin-left: 12px;
 }
