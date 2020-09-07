@@ -11,6 +11,9 @@ const CourseInfo = () => {
 
   const handleClickEnroll = () => {
     history.push("/course");
+    fetch('http://localhost:8080/KarmaWallet/1/Emp1/1', {
+        method: 'PUT'
+    }).then(response => console.log(response));
   }
 
   return (

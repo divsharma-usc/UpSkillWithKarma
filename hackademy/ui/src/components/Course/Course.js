@@ -1,8 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Course.module.css';
+import { useHistory } from 'react-router-dom';
 
-const Course = () => (
+const Course = () => {
+const history = useHistory();
+const handleClickSubmit = () => {history.push("/course");
+  fetch('http://localhost:8080/KC/1/1/CourseCreator1', {
+      method: 'PUT'
+  }).then(response => console.log(response));
+}
+return (
   <div className={styles.Course}>
     <img className= {styles.bigImg} src={process.env.PUBLIC_URL + "/images/course.jpg"}></img>
     <div className = {styles.courseTitle}>
@@ -60,13 +68,13 @@ const Course = () => (
         </div>
       </div>
       <div class = {styles.buttonDiv}>
-          <button class={styles.readMore}> | Submit | </button>
-          <button  class={styles.readMore}> | Leave Course| </button>
+          <button onClick={handleClickSubmit} class={styles.readMore}> | Submit | </button>
+          <button class={styles.readMore}> | Leave Course| </button>
       </div>
       </div>
   </div>
 );
-
+}
 Course.propTypes = {};
 
 Course.defaultProps = {};

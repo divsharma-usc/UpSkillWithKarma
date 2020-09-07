@@ -7,6 +7,9 @@ const Dashboard = () => {
 
   const handleClick = () => {
       history.push("/courseInfo");
+      fetch('http://localhost:8080/Operator/1/Emp1', {
+        method: 'PUT'
+      }).then(response => console.log(response));
   }
 
 return (
