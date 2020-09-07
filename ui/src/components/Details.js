@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import {ProductConsumer} from '../context';
 import {Link} from 'react-router-dom';
 import {ButtonContainer} from './Button';
+import Button from '@material-ui/core/Button';
+
 
 export default class Details extends Component {
     render() {
@@ -47,7 +49,9 @@ export default class Details extends Component {
                                                back to Courses
                                            </ButtonContainer>
                                         </Link>
-                                       
+                                        {/* <Button onClick={e => window.location.href = "/course" + id}>
+                                            Enroll</Button> */}
+
                                            <ButtonContainer onClick={() => {
                                                     value.addToCart(id);
                                                     value.openModal(id);

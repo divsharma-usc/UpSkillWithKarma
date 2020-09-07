@@ -2,8 +2,57 @@ import React, { Component } from 'react'
 import EmptyCart from './EmptyCart';
 import {ButtonContainer} from './../Button';
 import { ProductConsumer} from '../../context';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
+
 
 export default class Course extends Component {
+
+    async componentDidMount() {
+        const url = "http://localhost:8080/KarmaWallet/1/Emp1/1";
+        const response = await fetch(url);
+        const data = await response.json();
+       console.log("hey yash"+data);
+    }
+
+
+    linking = () => {
+         window.location.href = "/";
+
+        //console.log("Sharvi")
+        //console.log(window.location.href = "/")
+        
+      }
+
+
+
+
+
+    //   fetchData = () => {
+        
+    //     const url = "http://localhost:8080/KarmaWallet/2/Emp1/2";
+        
+    //     axios.get(url)
+    //         .then(response => {
+    //             this.setState({
+    //                 data: response.data,
+    //             });
+    //         })
+    //         console.log(this.state.data)
+    // }
+
+    handleClick(){
+        const url = "http://localhost:8080/KarmaWallet/2/Emp1/2";
+        axios.get(url)
+            .then(response => {
+                this.setState({
+                    data: response.data,
+                });
+            })
+            //console.log(this.state.data)
+           // window.location.href = "/";
+    }
+
     render() {
         return (
             <section>
@@ -32,9 +81,11 @@ export default class Course extends Component {
                             <h3>Module-5</h3><p>Working with date and time</p>
                                </div>
                                <div className="col-10 mx-auto col-md-6 my-3 text-capitalize">
-                               <ButtonContainer>
+                               <Link to="/">
+                               <ButtonContainer onClick={this.handleClick}>
                                    Complete the Course
                                    </ButtonContainer>
+                                   </Link>
                                    </div>
 </div>
                               //  <React.Fragment>
