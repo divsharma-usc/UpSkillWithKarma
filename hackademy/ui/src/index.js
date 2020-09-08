@@ -18,10 +18,24 @@ ReactDOM.render(
          <img id = "mainLogo" src={process.env.PUBLIC_URL + "/images/hsbc.svg"}></img>
           <h2>UpSkill with Karma</h2>
       </header>
+      <nav className="breadcrumb-wrapper">
+        <ol className="breadcrumb">
+          <li className="breadcrumb__item"><a href="/" className="breadcrumb__link">HOME</a></li>
+          <li className="breadcrumb__item">ABOUT</li>
+          <li className="breadcrumb__item">CONTACT</li>
+          <li className="breadcrumb__item">PROFILE</li>
+          </ol>
+        </nav>
       <Route exact path="/" component={Dashboard} />
       <Route path="/courseInfo" component={CourseInfo} />
       <Route path="/course" component={Course} />
-      <div id="footer1"></div>
+      <div id="footer1">
+        <p id="c1">Who are we</p>
+        <p id="c1">Our approach</p>
+        <p id="c1">Contact</p>
+        <p id="c1">Media</p>
+
+      </div>
       <div id="footer2">
       <p>Terms and conditions</p>
       <p>Privacy notice</p>
