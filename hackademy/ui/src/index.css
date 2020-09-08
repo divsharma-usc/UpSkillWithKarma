@@ -86,15 +86,21 @@ a {
   box-sizing: border-box;
   font-size: 1.0rem;
   line-height: 2.5;
-   margin-right: 10%;
-  margin-left: 8%;
+   margin-right: 8%;
+  margin-left: 7%;
 }
 
 #c1{
   font-weight: 300;
   font-size: 1.2rem;
   line-height: 3.29;
-    margin: 0 24px;
+  margin: 0 24px;
+}
+#c2{
+  font-weight: 700;
+  font-size: 1.2rem;
+  line-height: 3.29;
+  margin: 0 30px;
 }
 
 #footer1{

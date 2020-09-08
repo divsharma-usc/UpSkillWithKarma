@@ -16,13 +16,14 @@ ReactDOM.render(
     <div className= "App">
       <header className="App-header">
          <img id = "mainLogo" src={process.env.PUBLIC_URL + "/images/hsbc.svg"}></img>
-          <h2>UpSkill with Karma</h2>
+          <h3 id="c2">UpSkill with Karma</h3>
       </header>
       <nav className="breadcrumb-wrapper">
         <ol className="breadcrumb">
           <li className="breadcrumb__item"><a href="/" className="breadcrumb__link">HOME</a></li>
           <li className="breadcrumb__item">ABOUT</li>
           <li className="breadcrumb__item">CONTACT</li>
+          <li className="breadcrumb__item">Courses</li>
           <li className="breadcrumb__item">PROFILE</li>
           </ol>
         </nav>
