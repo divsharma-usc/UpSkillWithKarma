@@ -63,12 +63,16 @@ ol {
   padding: 0 33px;
   display: block;
   padding: 12px 35px;
-  max-width: 1240px;
+  max-width: 1540px;
 
 }
 
 a {
   background-color: transparent;
+  text-decoration: none;
+}
+a:hover{
+  color: #fff;
   text-decoration: none;
 }
 
