@@ -16,9 +16,9 @@ return (
   <div className={styles.Dashboard}>
     <img className= {styles.bigImg} src= {process.env.PUBLIC_URL + "/images/students.jpg"}></img>
     <div><h1>Explore Courses</h1></div>
-    <div id = {styles.innerDashboard}>
+    <div id = {styles.innerDashboard} >
 
-        <div class = {styles.card}>
+        <div class = {styles.card} onClick={handleClick}>
           <img  class = {styles.icon} src={process.env.PUBLIC_URL + "/images/icon6.jpg"}></img>
           <div class= {styles.courseHeading}> <h3>Diversity and inclusion </h3></div>
           <div class={styles.courseDetails}> 

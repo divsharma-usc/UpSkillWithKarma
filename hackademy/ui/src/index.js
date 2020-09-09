@@ -10,6 +10,7 @@ import CourseInfo from './components/CourseInfo/CourseInfo'
 import Course from './components/Course/Course'
 import './index.css';
 import * as serviceWorker from './serviceWorker';
+import Profile from './components/Profile/Profile';
 
 ReactDOM.render(
   <Router>
@@ -24,12 +25,15 @@ ReactDOM.render(
           <li className="breadcrumb__item">ABOUT</li>
           <li className="breadcrumb__item">CONTACT</li>
           <li className="breadcrumb__item">Courses</li>
-          <li className="breadcrumb__item">PROFILE</li>
+          <li className="breadcrumb__item"><a href="/profile" className="breadcrumb__link">PROFILE</a></li>
           </ol>
         </nav>
       <Route exact path="/" component={Dashboard} />
       <Route path="/courseInfo" component={CourseInfo} />
       <Route path="/course" component={Course} />
+      <Route path="/profile" component={Profile} />
+      
+      
       <div id="footer1">
         <p id="c1">Who are we</p>
         <p id="c1">Our approach</p>
