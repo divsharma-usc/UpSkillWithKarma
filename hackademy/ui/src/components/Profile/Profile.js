@@ -6,7 +6,7 @@ class Profile extends React.Component {
 
   componentDidMount() {
    
-    document.body.style.background="-webkit-linear-gradient(left, #3931af, #00c6ff)"
+    
 }
   render() {
     return(
