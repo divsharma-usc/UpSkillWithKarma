@@ -7,10 +7,12 @@ import {
 } from "react-router-dom";
 import Dashboard from './components/Dashboard/Dashboard'
 import CourseInfo from './components/CourseInfo/CourseInfo'
+import CourseInfo2 from './components/CourseInfo/CourseInfo2'
 import Course from './components/Course/Course'
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 import Profile from './components/Profile/Profile';
+import Course2 from './components/Course/Course2'
 
 ReactDOM.render(
   <Router>
@@ -28,10 +30,12 @@ ReactDOM.render(
           <li className="breadcrumb__item"><a href="/profile" className="breadcrumb__link">PROFILE</a></li>
           </ol>
         </nav>
-      <Route exact path="/" component={Dashboard} />
+        <Route exact path="/" component={Dashboard} />
       <Route path="/courseInfo" component={CourseInfo} />
+      <Route path="/courseInfo2" component={CourseInfo2} />
       <Route path="/course" component={Course} />
       <Route path="/profile" component={Profile} />
+      <Route path="/course2" component={Course2} />
       
       
       <div id="footer1">
