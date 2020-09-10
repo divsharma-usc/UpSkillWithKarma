@@ -55,4 +55,33 @@ public class KCService {
                 .bodyToMono(String.class)
                 .block();
     }
+
+
+    public String cancelKC(String psid, String cId, String party) {
+        String token = jwtUtility.getBearerToken(party);
+
+        WebClient webClient = WebClient.builder()
+                .baseUrl("http://" + host + ":" + port)
+                .defaultHeader(HttpHeaders.AUTHORIZATION, "Bearer " + token)
+                .build();
+
+        WebClient.RequestHeadersSpec<?> request = webClient.method(HttpMethod.POST)
+                .uri("/v1/exercise")
+                .body(BodyInserters.fromValue(ExerciseChoiceM.builder()
+                        .templateId(
+                                KC.TEMPLATE_ID.getModuleName() + ":" + KC.TEMPLATE_ID.getEntityName())
+                        .key(KCKey.builder()
+                                .operator("Operator")
+                                .courseId(cId)
+                                .psid(psid)
+                                .build())
+                        .choice("Cancel_KC")
+                        .argument(Approve.builder().build())
+                        .build()));
+
+        return request.exchange()
+                .block()
+                .bodyToMono(String.class)
+                .block();
+    }
 }
