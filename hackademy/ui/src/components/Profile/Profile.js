@@ -109,7 +109,7 @@ class Profile extends React.Component {
                         <div class="tab-content profile-tab" id="myTabContent">
                             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                                         <div class="row">
-                                            <div class="col-md-6">
+                                            <div class="col-md-3">
                                                 <label>PS Id</label>
                                             </div>
                                             <div class="col-md-6">
@@ -117,7 +117,7 @@ class Profile extends React.Component {
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-md-6">
+                                            <div class="col-md-3">
                                                 <label>Name</label>
                                             </div>
                                             <div class="col-md-6">
@@ -125,7 +125,7 @@ class Profile extends React.Component {
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-md-6">
+                                            <div class="col-md-3">
                                                 <label>Email</label>
                                             </div>
                                             <div class="col-md-6">
@@ -133,7 +133,7 @@ class Profile extends React.Component {
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-md-6">
+                                            <div class="col-md-3">
                                                 <label>Phone</label>
                                             </div>
                                             <div class="col-md-6">
@@ -141,7 +141,7 @@ class Profile extends React.Component {
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-md-6">
+                                            <div class="col-md-3">
                                                 <label>Profession</label>
                                             </div>
                                             <div class="col-md-6">
