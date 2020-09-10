@@ -12,7 +12,7 @@ const Course = () => {
     swal("Congrats!", "You have completed the course successfully!", "success");
     setTimeout(function () {
       history.push("/");
-      fetch('http://localhost:8080/KC/1/1/CourseCreator1', {
+      fetch('http://localhost:8080/KC/1/2/CourseCreator1', {
         method: 'PUT'
       }).then(response => console.log(response));
     }, 2000)
@@ -27,10 +27,10 @@ const Course = () => {
     
     setTimeout(function () {
       history.push("/");
-      fetch('http://localhost:8080/KC/1/1/CourseCreator1', {
+      fetch('http://localhost:8080/KC/Cancel/1/2/Emp1', {
         method: 'PUT'
       }).then(response => console.log(response));
-    }, 5000)
+    }, 2000)
 
   } 
 

@@ -11,7 +11,7 @@ const CourseInfo = () => {
 
   const handleClickEnroll = () => {
     history.push("/course2");
-    fetch('http://localhost:8080/KarmaWallet/1/Emp1/1', {
+    fetch('http://localhost:8080/KarmaWallet/1/Emp1/2', {
         method: 'PUT'
     }).then(response => console.log(response));
   }
@@ -20,7 +20,7 @@ const CourseInfo = () => {
   <div className={styles.CourseInfo}>
     <img className= {styles.bigImg} src={process.env.PUBLIC_URL + "/images/CourseInfo2.jpg"}></img>
     <div className = {styles.courseTitle}>
-      <h2>Diversity and inclusion</h2>
+      <h2>Machine Learning and AI</h2>
     </div>
     <div className={styles.innerContainer}>
       <div className={styles.courseText}>

@@ -56,7 +56,6 @@ public class KCService {
                 .block();
     }
 
-
     public String cancelKC(String psid, String cId, String party) {
         String token = jwtUtility.getBearerToken(party);
 
@@ -79,9 +78,10 @@ public class KCService {
                         .argument(Approve.builder().build())
                         .build()));
 
-        return request.exchange()
+        String response = request.exchange()
                 .block()
                 .bodyToMono(String.class)
                 .block();
+        return response;
     }
 }

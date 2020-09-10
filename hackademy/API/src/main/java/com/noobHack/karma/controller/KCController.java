@@ -18,7 +18,7 @@ public class KCController {
         return kcService.approveKC(psid, cId, party);
     }
 
-    @PutMapping("cancel/{psid}/{cId}/{party}")
+    @PutMapping("/Cancel/{psid}/{cId}/{party}")
     @ResponseBody
     public String cancelKC(@PathVariable String psid, @PathVariable String cId, @PathVariable String party) {
         return kcService.cancelKC(psid, cId, party);

@@ -117,8 +117,9 @@ public class KarmaWalletService {
                 .bodyToMono(KCQueryResponse.class)
                 .block();
 
-        return kcQueryResponse.getResult().stream()
+        String response = kcQueryResponse.getResult().stream()
                 .map(o -> o.getPayload().getAmount())
                 .reduce(BigDecimal.ZERO, BigDecimal::add).toString();
+        return  response;
     }
 }

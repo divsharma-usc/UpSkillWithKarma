@@ -11,12 +11,19 @@ const Dashboard = () => {
         method: 'PUT'
       }).then(response => console.log(response));
   }
+  const handleClick1 = () => {
+    history.push("/course");
+  }
 
   const handleClick2 = () => {
     history.push("/courseInfo2");
-    fetch('http://localhost:8080/Operator/1/Emp1', {
+    fetch('http://localhost:8080/Operator/2/Emp1', {
       method: 'PUT'
     }).then(response => console.log(response));
+}
+
+const handleClick21 = () => {
+  history.push("/course2");
 }
 
 return (
@@ -25,22 +32,26 @@ return (
     <div><h1>Explore Courses</h1></div>
     <div id = {styles.innerDashboard} >
 
-        <div class = {styles.card} onClick={handleClick}>
+        <div class = {styles.card} >
+          <div onClick={handleClick1}>
           <img  class = {styles.icon} src={process.env.PUBLIC_URL + "/images/icon6.jpg"}></img>
           <div class= {styles.courseHeading}> <h3>Diversity and inclusion </h3></div>
           <div class={styles.courseDetails}> 
             Diversity is in our roots. We believe that diversity brings benefits for our customers, our business and our people
           </div>
+          </div>
           <button class={styles.readMore} onClick={handleClick}>Read More</button>
         </div>
 
-         <div class = {styles.card} onClick={handleClick2}>
+         <div class = {styles.card} >
+          <div onClick={handleClick21}>
           <img  class = {styles.icon} src={process.env.PUBLIC_URL + "/images/icon1.jpg"}></img>
           <div class= {styles.courseHeading}> <h3>Machine learning and AI </h3></div>
           <div class={styles.courseDetails}> 
             Diversity is in our roots. We believe that diversity brings benefits for our customers, our business and our people
           </div>
-          <button class={styles.readMore}>Read More</button>
+          </div>
+          <button class={styles.readMore} onClick={handleClick2}>Read More</button>
         </div>
 
         <div class = {styles.card}>
