@@ -4,10 +4,38 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 class Profile extends React.Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            gold : 0.00,
+            silver : 0.00,
+            bronze : 0.00
+        }
+      }
+
   componentDidMount() {
-   
-    
-}
+    fetch('http://localhost:8080/Karma/1', {
+        method: 'GET'
+      }).then(response => response.json())
+      .then(response => {console.log(response)
+        this.setState({ gold : parseFloat(response).toFixed(2)})
+      }
+      );
+
+      fetch('http://localhost:8080/KarmaWallet/silverKarmas/1/Emp1', {
+        method: 'GET'
+      }).then(response => response.json())
+      .then(response => {console.log(response)
+        this.setState({ silver : parseFloat(response).toFixed(2)})
+    });
+
+      fetch('http://localhost:8080//KarmaWallet/1/Emp1', {
+        method: 'GET'
+      }).then(response => response.json())
+      .then(response => {console.log(response['result']['payload']['amount'])
+      this.setState({ bronze : parseFloat(response['result']['payload']['amount']).toFixed(2)})
+    });
+    }
   render() {
     return(
       
@@ -92,15 +120,15 @@ class Profile extends React.Component {
                             <div className="row" style={{ display: "flex", margin: 0, justifyContent: "space-evenly" }}>
                              <div className="col-md-4" >
                         <img src={process.env.PUBLIC_URL + "/images/Gold.jpg"} className="img-circle" alt="Bronze Karmas" height="60" />
-                        <div>1000</div>
+                        <div className="karmaValue">{this.state.gold}</div>
                     </div>
                     <div className="col-md-4">
                         <img src={process.env.PUBLIC_URL + "/images/Silver.jpg"} className="img-circle" alt="Bronze Karmas" height="60"/>
-                          <div>800</div>
+                        <div className="karmaValue">{this.state.silver}</div>
                     </div>
                     <div className="col-md-4">
                         <img src={process.env.PUBLIC_URL + "/images/Bronze.jpg"} className="img-circle" alt="Bronze Karmas" height="60"/>
-                            <div>200</div>
+                        <div className="karmaValue">{this.state.bronze}</div>
                     </div>
                     </div>
                         </div>

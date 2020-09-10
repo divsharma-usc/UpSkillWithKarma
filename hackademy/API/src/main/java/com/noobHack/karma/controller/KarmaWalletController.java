@@ -19,12 +19,14 @@ public class KarmaWalletController {
     }
 
     @GetMapping("/{id}/{party}")
+    @CrossOrigin
     @ResponseBody
     public String getBrowndKarmas(@PathVariable String id, @PathVariable String party) {
         return karmaWalletService.getKarmaWallet(id, party);
     }
 
     @GetMapping("silverKarmas/{id}/{party}")
+    @CrossOrigin
     @ResponseBody
     public String getSilverKarmas(@PathVariable String id, @PathVariable String party) {
         return karmaWalletService.geSilvertKarmaWallet(id, party);
