@@ -20,7 +20,7 @@ const CourseInfo = () => {
   <div className={styles.CourseInfo}>
     <img className= {styles.bigImg} src={process.env.PUBLIC_URL + "/images/diversity.jpg"}></img>
     <div className = {styles.courseTitle}>
-      <h2>Machine Learning and AI</h2>
+      <h2>Diversity and inclusion</h2>
     </div>
     <div className={styles.innerContainer}>
       <div className={styles.courseText}>

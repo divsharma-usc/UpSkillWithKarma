@@ -120,6 +120,6 @@ public class KarmaWalletService {
         String response = kcQueryResponse.getResult().stream()
                 .map(o -> o.getPayload().getAmount())
                 .reduce(BigDecimal.ZERO, BigDecimal::add).toString();
-        return  response;
+        return response;
     }
 }
